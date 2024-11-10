@@ -24,5 +24,5 @@ console.log(buffTwo.toString('utf-8'))
 const buffThree = Buffer.from("MANZITO", 'utf-8')
 console.log(buffThree)
 
-const buffFour = Buffer.from('F09F9984', 'hex')
+const buffFour = Buffer.from('F09F8EB8', 'hex')
 console.log(buffFour.toString('utf-8'))

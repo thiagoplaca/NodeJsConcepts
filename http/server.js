@@ -2,26 +2,45 @@ const http = require('node:http')
 
 const server = http.createServer()
 
-server.on('request', (request, response) => {
+server.on('request', (req, res) => {
 
-  console.log('----- Methods: -----');
-  console.log(request.method);
+  console.log('------Method------');
+  console.log(req.method);
 
-  console.log('----- URL: -----');
-  console.log(request.url);
+  console.log('------URL--------');
+  console.log(req.url);
 
-  console.log('----- HEADERS: -----');
-  console.log(request.headers);
+  console.log('------HEADERS-----');
+  console.log(req.headers);
 
-  request.on('data', (chunk) => {
-    console.log(chunk.toString('utf-8'));
-    
+  const name = req.headers.name
+  
+  
+  console.log('------BODY-------');
+
+  let data = ''
+
+  req.on('data', (chunk) => {
+    data += chunk.toString()
   })
 
+  req.on('end', () => {
+    data = JSON.parse(data)
+    
+    console.log(data);
+    console.log(name);
+
+    res.writeHead(200, {
+      'content-type': 'application/json'
+    })
+    res.end(JSON.stringify({
+      message: `Post with title ${data.title} was created by ${name}`
+    }))
+    
+  })
+  
 })
 
-
-server.listen(8050, () => {
-  console.log('Server Listening on http://localhost:8050');
-  
+server.listen(8080, () => {
+  console.log('Server listening on http://localhost:8080');
 })

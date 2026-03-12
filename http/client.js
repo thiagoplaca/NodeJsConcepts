@@ -9,8 +9,8 @@ const request = http.request({
   method: 'POST',
   path: '/create-post',
   headers: {
-    'content-type': 'application/json',
-    'name': 'Thiago'
+    'Content-Type': 'application/json',
+    name: 'Thiago'
   }
 })
 
@@ -34,12 +34,10 @@ request.on('response', (response) => {
   
 })
 
-request.write(JSON.stringify(
+request.end(JSON.stringify(
   {
     title: 'Title of my Post',
     body: 'Some text, bro!'
   }
 ))
-
-request.end()
 

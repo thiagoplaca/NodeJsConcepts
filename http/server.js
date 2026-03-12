@@ -15,23 +15,21 @@ server.on('request', (req, res) => {
 
   const name = req.headers.name
   
-  
   console.log('------BODY-------');
 
   let data = ''
 
   req.on('data', (chunk) => {
     data += chunk.toString()
+
+    
   })
 
   req.on('end', () => {
     data = JSON.parse(data)
     
-    console.log(data);
-    console.log(name);
-
     res.writeHead(200, {
-      'content-type': 'application/json'
+      "Content-type": "application"
     })
     res.end(JSON.stringify({
       message: `Post with title ${data.title} was created by ${name}`

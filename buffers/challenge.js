@@ -14,8 +14,7 @@ memory[6] = 0x4F
 console.log(memory)
 console.log(memory.toString('utf-8'))
 
-
-const buff = Buffer.from([0x48, 0x69, 0x21])
+const buff = Buffer.from([0x41, 0x74, 0x65, 0x6E, 0xC3, 0xA7, 0xC3, 0xA3, 0x6F, 0x21])
 console.log(buff.toString('utf-8'))
 
 const buffTwo = Buffer.from('4D414E5A49544F', 'hex')
@@ -24,5 +23,6 @@ console.log(buffTwo.toString('utf-8'))
 const buffThree = Buffer.from("MANZITO", 'utf-8')
 console.log(buffThree)
 
-const buffFour = Buffer.from('F09F8EB8', 'hex')
-console.log(buffFour.toString('utf-8'))
+const buffFour = Buffer.from('e29da4', 'hex')
+console.log(buffFour.toString())
+

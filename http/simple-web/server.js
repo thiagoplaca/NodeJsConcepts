@@ -16,7 +16,7 @@ server.route('get', '/house.png', (req, res) => {
 server.route('get', '/script.js', (req, res) => {
   res.sendFile('./public/script.js', 'text/javascript')
 })
-server.route('post', 'login', (req, res) => {
+server.route('post', '/login', (req, res) => {
   res.status(400).json({message: 'Bad login info.'})
 })
 

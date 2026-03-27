@@ -34,19 +34,19 @@ const fs = require('node:fs/promises');
   console.log(stream.write(buff)) */
 
   let i = 0
-  let numberOfWrites = 500000000
+  let numberOfWrites = 1e8
 
   const writeMany = () => {
-    while (i < numberOfWrites) {
-      const buff = Buffer.from(` ${i} `, 'utf-8')
+    let canWrite = true
+    while (i < numberOfWrites && canWrite) {
+      const buff = Buffer.from('a', 'utf-8')
 
       if(i === numberOfWrites - 1) {
-        return stream.end(buff)
+        stream.end(buff)
+        break
       }
 
-      if(!stream.write(buff)) {
-        break;
-      }
+      canWrite = stream.write(buff)
 
       i++
     }

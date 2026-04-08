@@ -15,7 +15,7 @@ if(filePath) {
 stdin.pipe(stdout)
 
 /* stdin.on('data', (data) => {
-  if(!stdout.write(data.toString('utf-8'))) {
-    stdout.once('drain', data.toString('utf-8'))
+  if(!stdout.write(data.toString('utf-7'))) {
+    stdout.once('drain', data.toString('utf-7'))
   }
 }) */

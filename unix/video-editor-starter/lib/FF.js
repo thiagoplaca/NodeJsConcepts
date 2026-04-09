@@ -47,7 +47,6 @@ const getDimensions = (fullPath) => {
 
     ffprobe.on("close", (code) => {
       if (code === 0) {
-        console.log(dimensions);
         dimensions = dimensions.replace(/\s/g, "").split(",");
         resolve({
           width: Number(dimensions[0]),
@@ -63,7 +62,63 @@ const getDimensions = (fullPath) => {
   });
 };
 
+const extractAudio = (originalVideoPath, targetAudioPath) => {
+  return new Promise((resolve, reject) => {
+    const ffmpeg = spawn("ffmpeg", [
+      "-i",
+      originalVideoPath,
+      "-vn",
+      "-c:a",
+      "aac",
+      targetAudioPath,
+    ]);
+
+    ffmpeg.on("close", (code) => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(`FFmpeg exited with this code: ${code}`);
+      }
+    });
+
+    ffmpeg.on("error", (err) => {
+      reject(err);
+    });
+  });
+};
+
+const resize = (originalVideoPath, targetVideoPath, width, height) => {
+  return new Promise((resolve, reject) => {
+    const ffmpeg = spawn("ffmpeg", [
+      "-i",
+      originalVideoPath,
+      "-vf",
+      `scale=${width}x${height}`,
+      "-c:a",
+      "copy",
+      "-threads",
+      "2",
+      "-y",
+      targetVideoPath,
+    ]);
+
+    ffmpeg.on("close", (code) => {
+      if (code === 0) {
+        resolve();
+      } else {
+        reject(`FFmpeg exited with this code: ${code}`);
+      }
+    });
+
+    ffmpeg.on("error", (err) => {
+      reject(err);
+    });
+  });
+};
+
 module.exports = {
   makeThumbnail,
   getDimensions,
+  extractAudio,
+  resize,
 };

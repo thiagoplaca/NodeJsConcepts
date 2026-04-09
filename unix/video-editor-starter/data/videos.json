@@ -1,1 +1,19 @@
-[{"id":1,"videoId":"df0e8832","name":"RHCP - Final jam live at Chorzów, Poland 2007 (Strumming part) - TABS","extension":"mp4","dimensions":{"width":1280,"height":720},"userId":1,"extratedAudio":false,"resizes":{}},{"id":0,"videoId":"de7b33aa","name":"RHCP - Final jam live at Chorzów, Poland 2007 (Strumming part) - TABS","extension":"mp4","userId":3,"extratedAudio":false,"resizes":{}}]
+[
+  {
+    "id": 0,
+    "videoId": "a5f885d1",
+    "name": "video",
+    "extension": "mp4",
+    "dimensions": { "width": 1920, "height": 816 },
+    "userId": 1,
+    "extractedAudio": false,
+    "resizes": {
+      "240x140": { "processing": false },
+      "100x100": { "processing": false },
+      "50x50": { "processing": false },
+      "1000x720": { "processing": false },
+      "500x500": { "processing": false }
+    }
+  }
+]
+

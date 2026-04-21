@@ -1,4 +1,4 @@
-const fs = require('node:fs/promises');
+const fs = require("node:fs/promises");
 
 /* (async () => {
   console.time('writeMany')
@@ -22,10 +22,9 @@ const fs = require('node:fs/promises');
     console.timeEnd('writeMany');
 })() */
 
-
 (async () => {
-  console.time('writeMany')
-  const fileHandle = await fs.open('bigFile.txt', 'w');
+  console.time("writeMany");
+  const fileHandle = await fs.open("bigFile.txt", "w");
   const stream = fileHandle.createWriteStream();
 
   /* console.log(stream.writableHighWaterMark);
@@ -33,34 +32,34 @@ const fs = require('node:fs/promises');
   const buff = Buffer.alloc(16384, 10)
   console.log(stream.write(buff)) */
 
-  let i = 0
-  let numberOfWrites = 1e8
+  let i = 0;
+  let numberOfWrites = 1e9;
 
   const writeMany = () => {
-    let canWrite = true
+    let canWrite = true;
     while (i < numberOfWrites && canWrite) {
-      const buff = Buffer.from('a', 'utf-8')
+      const buff = Buffer.from(`${i}`, "utf-8");
 
-      if(i === numberOfWrites - 1) {
-        stream.end(buff)
-        break
+      if (i === numberOfWrites - 1) {
+        stream.end(buff);
+        break;
       }
 
-      canWrite = stream.write(buff)
+      canWrite = stream.write(buff);
 
-      i++
+      i++;
     }
-  }
+  };
 
-  writeMany()
+  writeMany();
 
-  stream.on('drain', () => {
-    writeMany()
-  })
+  stream.on("drain", () => {
+    writeMany();
+  });
 
-  stream.on('finish', () => {
-    console.timeEnd('writeMany');
-    fileHandle.close() 
-  })
-  
-})()
+  stream.on("finish", () => {
+    console.timeEnd("writeMany");
+    fileHandle.close();
+  });
+})();
+

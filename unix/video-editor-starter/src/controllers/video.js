@@ -116,7 +116,7 @@ const resizeVideo = async (req, res) => {
   DB.save();
 
   if (cluster.isPrimary) {
-    jobs.enqueue({
+    job.enqueue({
       type: "resize",
       videoId,
       width,

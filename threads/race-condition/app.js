@@ -1,7 +1,6 @@
 const { Worker } = require("worker_threads");
 
-const number = new Uint32Array(new SharedArrayBuffer(4)); // 32-bit number
-
+const number = new Uint32Array(new SharedArrayBuffer(4));
 const THREADS = 8;
 let completed = 0;
 
